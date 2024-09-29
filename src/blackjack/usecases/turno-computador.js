@@ -14,7 +14,6 @@ export const turnoComputadora = (
   deck = []
 ) => {
   if (!puntosMinimos) {
-    alert("Pida una carta!");
     throw new Error("Puntos minimos son necesarios");
   }
 
