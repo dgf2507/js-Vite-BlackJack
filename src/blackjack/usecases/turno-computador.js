@@ -45,5 +45,5 @@ export const turnoComputadora = (
     } else {
       alert("Perdiste");
     }
-  }, 150);
+  }, 170);
 };
