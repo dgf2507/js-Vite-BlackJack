@@ -12,38 +12,35 @@ export const turnoComputadora = (
   puntosHTML,
   divCartasComputadora,
   deck = []
-) => {
-  if (!puntosMinimos) {
-    alert("Pida una carta!");
-    throw new Error("Puntos minimos son necesarios");
-  }
+) => {    if ( !puntosMinimos ) throw new Error('Puntos mínimos son necesarios');
+  if ( !puntosHTML ) throw new Error('Argumento puntosHTML es necesario');
 
-  if (!puntosHTML) throw new Error("Argumento puntosHTML es necesario");
   let puntosComputadora = 0;
 
   do {
-    const carta = pedirCarta(deck);
+      const carta = pedirCarta( deck );
 
-    puntosComputadora = puntosComputadora + valorCarta(carta);
-    puntosHTML.innerText = puntosComputadora;
+      puntosComputadora = puntosComputadora + valorCarta( carta );
+      puntosHTML.innerText = puntosComputadora;
+      
+      const imgCarta = crearCartaHTML( carta );
+      divCartasComputadora.append( imgCarta );
 
-    const imgCarta = crearCartaHtml(carta);
-    divCartasComputadora.append(imgCarta);
+      if( puntosMinimos > 21 ) {
+          break;
+      }
 
-    if (puntosMinimos > 21) {
-      break;
-    }
-  } while ((puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
+  } while(  (puntosComputadora < puntosMinimos)  && (puntosMinimos <= 21 ) );
 
   setTimeout(() => {
-    if (puntosComputadora === puntosMinimos) {
-      alert("Empate");
-    } else if (puntosMinimos > 21) {
-      alert("Perdiste");
-    } else if (puntosComputadora > 21) {
-      alert("Ganaste");
-    } else {
-      alert("Perdiste");
-    }
-  }, 500);
-};
+      if( puntosComputadora === puntosMinimos ) {
+          alert('Nadie gana :(');
+      } else if ( puntosMinimos > 21 ) {
+          alert('Computadora gana')
+      } else if( puntosComputadora > 21 ) {
+          alert('Jugador Gana');
+      } else {
+          alert('Computadora Gana')
+      }
+  }, 100 );
+}
